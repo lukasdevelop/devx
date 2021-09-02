@@ -1,0 +1,24 @@
+{
+  "name": "Devx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lukasdevelop/devx.git",
+  "author": "Lukas <lukas@hotmail.co.jp>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.10",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.37"
+  }
+}
