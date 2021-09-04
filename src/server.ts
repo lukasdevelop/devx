@@ -2,6 +2,8 @@ import "express-async-errors"
 import express, { Request, Response, NextFunction } from 'express'
 import router from './routes'
 import "reflect-metadata";
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 
@@ -15,12 +17,14 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
             error: err.message
         })
     }
+    
 
     return response.status(500).json({
+
         status: "error",
         message: "Internal Server Error"
     })
 
 })
 
-app.listen(3333, () => console.log(`Server is running`))
+app.listen(process.env.PORT || 3333, () => console.log(`Server is running at PORT ${process.env.PORT}`))
