@@ -11,7 +11,6 @@ class ConfirmedUserController {
 
         const result = await confirmedUserService.execute(token)
 
-
         return response.json(result)
     }
 }

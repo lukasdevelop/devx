@@ -47,6 +47,8 @@ export class CreateUserService {
 
         SendEmailConfirmationService.user = user.id
 
+        SendEmailConfirmationService.to = user.email
+
         SendEmailConfirmationService.sendMail()
 
         return user;

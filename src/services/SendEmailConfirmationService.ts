@@ -1,5 +1,5 @@
 import * as nodemailer from 'nodemailer'
-import config from '../config/mail'
+import config from '../config'
 import jwt from 'jsonwebtoken'
 
 class SendEmailConfirmationService {
@@ -28,15 +28,16 @@ class SendEmailConfirmationService {
         jwt.sign({
             email: this.to
         },
-            "9aaf65aa4740576769dd8e28ef721b09", {
+            `${config.secret}`, {
             subject: this.user,
             expiresIn: "1d"
         },
             (err, emailToken) => {
-                const url = `http://localhost:3333/confirmation/${emailToken}`
+                const url = `${config.baseurl}confirmation/${emailToken}`
 
                 let mailConfirmation = {
-                    to: "analista.sistemas.lucas@gmail.com",
+                    from: config.from,
+                    to: this.to,
                     subject: "Confirm Email",
                     html: `Please click this email to confirm your email: <a href="${url}"> Click here</a>`
 

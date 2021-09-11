@@ -1,7 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import jwt from 'jsonwebtoken'
-
+import config from '../config'
 interface IJwtPayload {
     sub: string;
 }
@@ -16,7 +16,7 @@ export class ConfirmedUserService {
 
     async execute(token: string){
 
-        const { sub } = jwt.verify(token, "9aaf65aa4740576769dd8e28ef721b09") as IJwtPayload
+        const { sub } = jwt.verify(token, config.secret) as IJwtPayload
 
         const id = sub
 
@@ -24,6 +24,9 @@ export class ConfirmedUserService {
             confirmed: true
         })
 
-        return sub
+        return {
+            id: sub,
+            message: "E-email confirmed."
+        }
     }
 }

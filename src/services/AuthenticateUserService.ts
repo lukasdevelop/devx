@@ -2,6 +2,7 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
+import config from '../config'
 
 
 
@@ -18,14 +19,16 @@ export class AuthenticateUserService {
             email
         })
 
-        
-        if(!user?.confirmed){
-            throw new Error("Please confirm your email to login.")
-        }
 
         if(!user){
             throw new Error("Email/Password incorrect.")
         }
+
+                
+        if(!user?.confirmed){
+            throw new Error("Please confirm your email to login.")
+        }
+
 
         const passwordMatch = await compare(password, user.password)
 
@@ -36,7 +39,7 @@ export class AuthenticateUserService {
         const token = sign({
             email: user.email
         },
-        "9aaf65aa4740576769dd8e28ef721b09", {
+        config.secret, {
             subject: user.id,
             expiresIn: "1d"
         })
