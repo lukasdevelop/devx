@@ -1,7 +1,7 @@
 import { Response, Request } from 'express'
 import { UpdateProductService } from '../services/UpdateProductService'
 
-export class UpdateProductController {
+class UpdateProductController {
 
     async handle(request: Request, response: Response){
         const { name, description, price} = request.body
@@ -14,3 +14,5 @@ export class UpdateProductController {
         return response.json(product)
     }
 }
+
+export default new UpdateProductController

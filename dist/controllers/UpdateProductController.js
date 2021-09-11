@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateProductController = void 0;
 var UpdateProductService_1 = require("../services/UpdateProductService");
 var UpdateProductController = /** @class */ (function () {
     function UpdateProductController() {
@@ -60,4 +59,4 @@ var UpdateProductController = /** @class */ (function () {
     };
     return UpdateProductController;
 }());
-exports.UpdateProductController = UpdateProductController;
+exports.default = new UpdateProductController;

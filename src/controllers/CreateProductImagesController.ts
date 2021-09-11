@@ -1,7 +1,6 @@
 import {Request, Response} from 'express'
 import { CreateProductImagesService } from '../services/CreateProductImagesService'
-
-export class CreateProductImagesController {
+class CreateProductImagesController {
     async handle(request: Request, response: Response){
 
         const { product_id } = request.body
@@ -16,3 +15,5 @@ export class CreateProductImagesController {
 
     }
 }
+
+export default new CreateProductImagesController

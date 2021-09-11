@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteProductController = void 0;
 var DeleteProductService_1 = require("../services/DeleteProductService");
 var DeleteProductController = /** @class */ (function () {
     function DeleteProductController() {
@@ -60,4 +59,4 @@ var DeleteProductController = /** @class */ (function () {
     };
     return DeleteProductController;
 }());
-exports.DeleteProductController = DeleteProductController;
+exports.default = new DeleteProductController;

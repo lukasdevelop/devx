@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductImagesController = void 0;
 var CreateProductImagesService_1 = require("../services/CreateProductImagesService");
 var CreateProductImagesController = /** @class */ (function () {
     function CreateProductImagesController() {
@@ -61,4 +60,4 @@ var CreateProductImagesController = /** @class */ (function () {
     };
     return CreateProductImagesController;
 }());
-exports.CreateProductImagesController = CreateProductImagesController;
+exports.default = new CreateProductImagesController;

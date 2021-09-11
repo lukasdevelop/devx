@@ -1,7 +1,7 @@
 import { Response, Request } from 'express'
 import { DeleteProductService } from "../services/DeleteProductService";
 
-export class DeleteProductController {
+class DeleteProductController {
 
     async handle(request: Request, response: Response, ) {
         const {id} = request.params
@@ -13,3 +13,5 @@ export class DeleteProductController {
         response.json({message: `${product.id} deleted with success.`})
     }
 }
+
+export default new DeleteProductController

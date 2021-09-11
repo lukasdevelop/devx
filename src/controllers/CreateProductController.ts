@@ -1,7 +1,7 @@
 import {Response, Request } from 'express'
 import { CreateProductService } from '../services/CreateProductService'
 
-export class CreateProductController {
+class CreateProductController {
     async handle(request: Request, response: Response){
         const { name, description, price } = request.body
 
@@ -13,3 +13,5 @@ export class CreateProductController {
 
     }
 }
+
+export default new CreateProductController

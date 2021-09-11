@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserController = void 0;
 var CreateUserService_1 = require("../services/CreateUserService");
 var CreateUserController = /** @class */ (function () {
     function CreateUserController() {
@@ -59,4 +58,4 @@ var CreateUserController = /** @class */ (function () {
     };
     return CreateUserController;
 }());
-exports.CreateUserController = CreateUserController;
+exports.default = new CreateUserController;
