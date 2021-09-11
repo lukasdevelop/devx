@@ -10,7 +10,7 @@ import './database'
 import  ListProductController  from './controllers/ListProductController'
 import { UpdateProductController } from './controllers/UpdateProductController'
 import { DeleteProductController } from './controllers/DeleteProductController'
-import Mail from './mail/mail'
+import ConfirmedUserController from './controllers/ConfirmedUserController'
 
 const router = Router()
 
@@ -22,23 +22,12 @@ const updateProductController = new UpdateProductController()
 const deleteProductController = new DeleteProductController()
 
 router.put('/product/:id', updateProductController.handle)
-router.post('/users', ensureAuthenticated, userController.handle)
+router.post('/users', userController.handle)
 router.post('/products', productController.handle)
 router.get('/products', ListProductController.handle)
 router.post('/upload', uploads.single('file'), productImageController.handle)
 router.post('/login', authenticateUserController.handle)
 router.delete('/product/:id', deleteProductController.handle)
-router.post('/', (req, res) => {
-    const {to, subject, message } = req.body
-
-    Mail.to = to;
-    Mail.subject = subject;
-    Mail.message = message;
-
-    let result = Mail.sendMail();
-
-    res.status(200).json({result: result})
-
-})
+router.get('/confirmation/:token', ConfirmedUserController.handle)
 
 export default router;

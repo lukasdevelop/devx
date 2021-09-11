@@ -17,7 +17,6 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
             error: err.message
         })
     }
-    
 
     return response.status(500).json({
 

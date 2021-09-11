@@ -18,6 +18,11 @@ export class AuthenticateUserService {
             email
         })
 
+        
+        if(!user?.confirmed){
+            throw new Error("Please confirm your email to login.")
+        }
+
         if(!user){
             throw new Error("Email/Password incorrect.")
         }

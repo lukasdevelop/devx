@@ -1,12 +1,14 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from 'bcryptjs'
+import SendEmailConfirmationService  from './SendEmailConfirmationService'
 
 interface IUser {
     name: string;
     email: string;
     admin?: boolean;
     password: string;
+    confirmed?: boolean;
 }
 export class CreateUserService {
 
@@ -16,7 +18,7 @@ export class CreateUserService {
         this.usersRepository = getCustomRepository(UsersRepositories)
     }
 
-    async execute({name, email, admin = false, password} : IUser){
+    async execute({name, email, admin = false, password, confirmed = false} : IUser){
 
         if(!email) {
             throw new Error("Email incorrrect.")
@@ -25,6 +27,7 @@ export class CreateUserService {
         const userAlreadyExists = await this.usersRepository.findOne({
             email
         })
+
 
         if(userAlreadyExists){
             throw new Error("User already exists.")
@@ -36,10 +39,15 @@ export class CreateUserService {
             name,
             email,
             admin,
-            password: passwordHash
+            password: passwordHash,
+            confirmed
         })
 
         await this.usersRepository.save(user)
+
+        SendEmailConfirmationService.user = user.id
+
+        SendEmailConfirmationService.sendMail()
 
         return user;
 
